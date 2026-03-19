@@ -1,3 +1,5 @@
 <Solution>
+  <Project Path="LibrarieModele/LibrarieModele.csproj" Id="44d3b82d-c289-4602-a5a3-b8487aa44ab0" />
+  <Project Path="NivelStocareDate/NivelStocareDate.csproj" Id="ec05083e-43b4-41d9-a540-9addd5722320" />
   <Project Path="Proiect_Programarea_Interfetelor_Utilizator/Proiect_Programarea_Interfetelor_Utilizator.csproj" />
 </Solution>

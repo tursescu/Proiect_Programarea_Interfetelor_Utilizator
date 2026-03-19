@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Proiect_Programarea_Interfetelor_Utilizator.Models
+namespace LibrarieModele.Models
 {
     public class ArticolComanda
     {

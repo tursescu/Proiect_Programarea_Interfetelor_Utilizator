@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Proiect_Programarea_Interfetelor_Utilizator.Enums
+namespace LibrarieModele.Enums
 {
     public enum StatusComanda
     {
