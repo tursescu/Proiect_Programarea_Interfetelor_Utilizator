@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\LibrarieModele\LibrarieModele.csproj" />
     <ProjectReference Include="..\NivelStocareDate\NivelStocareDate.csproj" />
   </ItemGroup>

@@ -9,11 +9,12 @@ namespace Proiect_Programarea_Interfetelor_Utilizator
     {
         static void Main(string[] args)
         {
-            AdministrareProduseMemorie adminProduse = new AdministrareProduseMemorie();
-            AdministrareComenziMemorie adminComenzi = new AdministrareComenziMemorie();
+            IStocareProduse adminProduse = StocareFactory.GetAdministratorStocareProduse();
+            IStocareComenzi adminComenzi = StocareFactory.GetAdministratorStocareComenzi();
 
             int idProdusCurent = 1;
             int idComandaCurenta = 1;
+
             Produs ecler = new Produs(idProdusCurent++, "Ecler cu ciocolata", "Glazura", 15.5m);
             ecler.Caracteristici = CaracteristiciProdus.Niciuna;
             adminProduse.AdaugaProdus(ecler);
@@ -59,7 +60,7 @@ namespace Proiect_Programarea_Interfetelor_Utilizator
                 }
             }
         }
-        static void CitireSiSalvareProdus(AdministrareProduseMemorie admin, ref int id)
+        static void CitireSiSalvareProdus(IStocareProduse admin, ref int id)
         {
             Console.WriteLine("--- Adaugare Produs ---");
             Console.Write("Nume: ");
@@ -82,7 +83,7 @@ namespace Proiect_Programarea_Interfetelor_Utilizator
             Console.WriteLine("Produs salvat!");
         }
 
-        static void AfisareProduse(AdministrareProduseMemorie admin)
+        static void AfisareProduse(IStocareProduse admin)
         {
             List<Produs> lista = admin.GetProduse();
             Console.WriteLine("--- Produse in Meniu ---");
@@ -96,7 +97,7 @@ namespace Proiect_Programarea_Interfetelor_Utilizator
             }
         }
 
-        static void CreareComanda(AdministrareComenziMemorie adminC, AdministrareProduseMemorie adminP, ref int idComanda)
+        static void CreareComanda(IStocareComenzi adminC, IStocareProduse adminP, ref int idComanda)
         {
             Console.WriteLine("--- Creare Comanda Noua ---");
             Console.Write("Nume client: ");
@@ -136,7 +137,7 @@ namespace Proiect_Programarea_Interfetelor_Utilizator
             Console.WriteLine($"\nComanda salvata cu succes! Total de plata: {comandaNoua.PretTotal} lei.");
         }
 
-        static void AfisareComenzi(AdministrareComenziMemorie adminC)
+        static void AfisareComenzi(IStocareComenzi adminC)
         {
             List<Comanda> lista = adminC.GetComenzi();
             Console.WriteLine("--- Lista Comenzi ---");
@@ -154,7 +155,7 @@ namespace Proiect_Programarea_Interfetelor_Utilizator
             }
         }
 
-        static void ModificaStatusComanda(AdministrareComenziMemorie adminC)
+        static void ModificaStatusComanda(IStocareComenzi adminC)
         {
             Console.Write("Introdu ID-ul comenzii pe care vrei sa o modifici: ");
             int idCautat = Convert.ToInt32(Console.ReadLine());

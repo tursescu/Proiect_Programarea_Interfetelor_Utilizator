@@ -4,7 +4,7 @@ using LibrarieModele.Models;
 
 namespace NivelStocareDate
 {
-    public class AdministrareComenziMemorie
+    public class AdministrareComenziMemorie : IStocareComenzi
     {
         private List<Comanda> _comenzi;
 
@@ -26,6 +26,18 @@ namespace NivelStocareDate
         public Comanda GetComandaDupaId(int id)
         {
             return _comenzi.FirstOrDefault(c => c.ID == id);
+        }
+
+        public bool UpdateComanda(Comanda cActualizata)
+        {
+            var comandaVeche = _comenzi.FirstOrDefault(c => c.ID == cActualizata.ID);
+            if (comandaVeche != null)
+            {
+                comandaVeche.StatusComanda = cActualizata.StatusComanda;
+                comandaVeche.StatusPlata = cActualizata.StatusPlata;
+                return true;
+            }
+            return false;
         }
     }
 }
