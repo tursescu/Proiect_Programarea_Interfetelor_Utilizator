@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/Solution Items/" />
+  <Project Path="InterfataGraficaWPF/InterfataGraficaWPF.csproj" Id="ded3962d-280d-4329-88fd-af0c631506e1" />
   <Project Path="LibrarieModele/LibrarieModele.csproj" Id="44d3b82d-c289-4602-a5a3-b8487aa44ab0" />
   <Project Path="NivelStocareDate/NivelStocareDate.csproj" Id="ec05083e-43b4-41d9-a540-9addd5722320" />
   <Project Path="Proiect_Programarea_Interfetelor_Utilizator/Proiect_Programarea_Interfetelor_Utilizator.csproj" />
