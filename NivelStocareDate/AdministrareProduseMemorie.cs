@@ -28,6 +28,12 @@ namespace NivelStocareDate
             return _produse.FirstOrDefault(p => p.Nume.ToLower().Contains(numeCautat.ToLower()));
         }
 
+        public List<Produs> GetProduseDupaNume(string numeCautat)
+        {
+            return _produse
+                .Where(p => p.Nume.ToLower().Contains(numeCautat.ToLower()))
+                .ToList();
+        }
         public bool UpdateProdus(Produs pActualizat)
         {
             var produsVechi = _produse.FirstOrDefault(p => p.ID == pActualizat.ID);

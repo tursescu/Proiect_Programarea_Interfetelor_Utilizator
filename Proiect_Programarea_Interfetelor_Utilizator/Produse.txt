@@ -1,3 +1,7 @@
 1;Ecler cu ciocolata;15.5;Glazura;0
 2;Tarta cu fructe;20;Mascarpone;3
 3;Tarta;12;Crema Mascarpone;0
+1;Ecler cu ciocolata;15.5;Glazura;0
+2;Tarta cu fructe;20;Mascarpone;3
+1;Ecler cu ciocolata;15.5;Glazura;0
+2;Tarta cu fructe;20;Mascarpone;3
