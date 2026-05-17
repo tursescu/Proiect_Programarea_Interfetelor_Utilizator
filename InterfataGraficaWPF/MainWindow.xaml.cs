@@ -591,7 +591,22 @@ namespace InterfataGraficaWPF
         {
             ResetFormularComanda();
         }
+        private void dgComenzi_SelectionChanged_Lista(object sender, SelectionChangedEventArgs e)
+        {
+            Comanda comandaAleasa = dgComenzi.SelectedItem as Comanda;
+            if (comandaAleasa == null)
+            {
+                tbTitluArticole.Text = "Selectează o comandă pentru a vedea produsele";
+                dgArticoleSelectate.ItemsSource = null;
+                tbTotalArticole.Text = string.Empty;
+                return;
+            }
 
+            tbTitluArticole.Text = $"Produse din comanda #{comandaAleasa.ID} - {comandaAleasa.NumeClient} {comandaAleasa.PrenumeClient}";
+            dgArticoleSelectate.ItemsSource = null;
+            dgArticoleSelectate.ItemsSource = comandaAleasa.Produse;
+            tbTotalArticole.Text = $"Total comandă: {comandaAleasa.PretTotal} lei";
+        }
         private void ResetFormularComanda()
         {
             txtNumeClient.Clear();

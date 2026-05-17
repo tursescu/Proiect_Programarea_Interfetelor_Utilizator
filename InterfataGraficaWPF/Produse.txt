@@ -4,3 +4,13 @@
 4;Prajitura Diplomat;8.5;Pret/buc;0;2026-05-17;2026-05-17
 5;Medovik;12;Pret/Buc;0;2026-05-12;2026-05-17
 6;Prajitura Oreo;11;Pret/Buc;0;2026-05-17;2026-05-17
+7;Tiramisu;8;Aroma de cafea;0;2026-05-17;2026-05-17
+8;Tiramisu de vara;9;Crema de Mascarpone cu Capsuni;4;2026-05-17;2026-05-17
+9;Croissant cu Unt;3;Stil clasic frantuzesc;13;2026-05-17;2026-05-17
+10;Croissant cu Ciocolata;3;Umplutura de ciocolata cu lapte;0;2026-05-17;2026-05-17
+11;Cupcake cu Ciocolata;4;Blat cu cacao si crema de ciocolata;0;2026-05-17;2026-05-17
+12;Prajitura Albinuta;11;Crema bavareza cu miere si lamaie;4;2026-05-17;2026-05-17
+13;Cafea Scurta;4;70ml;0;2026-05-17;2026-05-17
+14;Cafea Lunga;6;150ml;0;2026-05-17;2026-05-17
+15;Latte Machiatto;8;200ml;0;2026-05-17;2026-05-17
+16;Espresso;5;30ml;0;2026-05-17;2026-05-17
