@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using LibrarieModele.Models;
 
 namespace NivelStocareDate
@@ -11,5 +9,6 @@ namespace NivelStocareDate
         List<Comanda> GetComenzi();
         Comanda GetComandaDupaId(int id);
         bool UpdateComanda(Comanda c);
+        bool ModificaComanda(Comanda c); 
     }
 }

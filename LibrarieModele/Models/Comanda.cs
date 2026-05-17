@@ -9,27 +9,33 @@ namespace LibrarieModele.Models
     public class Comanda
     {
         private const char SEPARATOR_PRINCIPAL_FISIER = ';';
+
         public int ID { get; set; }
         public string NumeClient { get; set; }
         public string PrenumeClient { get; set; }
         public string NumarTelefon { get; set; }
         public List<ArticolComanda> Produse { get; set; }
+        public DateTime DataLivrarii { get; set; }
+        public StatusComanda StatusComanda { get; set; }
+        public StatusPlata StatusPlata { get; set; }
+        public ModPlata ModPlata { get; set; }
+
         public decimal PretTotal
         {
             get
             {
                 decimal suma = 0;
-                foreach (ArticolComanda articol in Produse)
+                if (Produse != null)
                 {
-                    if (articol.ProdusComandat != null)
-                        suma = suma + articol.PretTotalArticol;
+                    foreach (ArticolComanda articol in Produse)
+                    {
+                        if (articol.ProdusComandat != null)
+                            suma += articol.PretTotalArticol;
+                    }
                 }
                 return suma;
             }
         }
-        public DateTime DataLivrarii { get; set; }
-        public StatusComanda StatusComanda { get; set; }
-        public StatusPlata StatusPlata { get; set; }
 
         public Comanda(int id, string numeClient, string prenumeClient, string numarTelefon, DateTime dataLivrarii)
         {
@@ -38,15 +44,16 @@ namespace LibrarieModele.Models
             PrenumeClient = prenumeClient;
             NumarTelefon = numarTelefon;
             DataLivrarii = dataLivrarii;
-
             Produse = new List<ArticolComanda>();
-            StatusComanda = StatusComanda.InAsteptare; //default
-            StatusPlata = StatusPlata.Neplatita;       
+            StatusComanda = StatusComanda.InAsteptare;
+            StatusPlata = StatusPlata.Neplatita;
+            ModPlata = ModPlata.Numerar;
         }
 
         public void AdaugaProdus(Produs produs, int cantitate)
         {
-            Produse.Add(new ArticolComanda(produs, cantitate));
+            ArticolComanda articol = new ArticolComanda(0, ID, produs, cantitate);
+            Produse.Add(articol);
         }
 
         public Comanda(string linieFisier)
@@ -61,33 +68,30 @@ namespace LibrarieModele.Models
             StatusComanda = (StatusComanda)Convert.ToInt32(dateFisier[5]);
             StatusPlata = (StatusPlata)Convert.ToInt32(dateFisier[6]);
 
+            if (dateFisier.Length > 7 && Enum.TryParse(dateFisier[7], out ModPlata mp))
+            {
+                ModPlata = mp;
+            }
+            else
+            {
+                ModPlata = ModPlata.Numerar;
+            }
+
             Produse = new List<ArticolComanda>();
         }
 
         public string ConversieLaSirPentruFisier()
         {
-            string stringProduse = "";
-            if (Produse != null && Produse.Count > 0)
-            {
-                List<string> listaProduseString = new List<string>();
-                foreach (var articol in Produse)
-                {
-                    if (articol.ProdusComandat != null)
-                        listaProduseString.Add($"{articol.ProdusComandat.ID}:{articol.Cantitate}");
-                }
-                stringProduse = string.Join("|", listaProduseString);
-            }
-
             return string.Format("{1}{0}{2}{0}{3}{0}{4}{0}{5}{0}{6}{0}{7}{0}{8}",
                 SEPARATOR_PRINCIPAL_FISIER,
-                ID.ToString(),
+                ID,
                 (NumeClient ?? "NECUNOSCUT"),
                 (PrenumeClient ?? "NECUNOSCUT"),
                 (NumarTelefon ?? "NECUNOSCUT"),
                 DataLivrarii.ToString("yyyy-MM-dd"),
                 (int)StatusComanda,
                 (int)StatusPlata,
-                stringProduse);
+                ModPlata.ToString());
         }
     }
 }

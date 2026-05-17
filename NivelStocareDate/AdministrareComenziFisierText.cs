@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using LibrarieModele.Models;
@@ -13,8 +12,8 @@ namespace NivelStocareDate
         public AdministrareComenziFisierText(string numeFisier)
         {
             this.numeFisier = numeFisier;
-            Stream streamFisierText = File.Open(numeFisier, FileMode.OpenOrCreate);
-            streamFisierText.Close();
+            Stream s = File.Open(numeFisier, FileMode.OpenOrCreate);
+            s.Close();
         }
 
         public void AdaugaComanda(Comanda c)
@@ -33,7 +32,10 @@ namespace NivelStocareDate
                 string linie;
                 while ((linie = sr.ReadLine()) != null)
                 {
-                    comenzi.Add(new Comanda(linie));
+                    if (!string.IsNullOrWhiteSpace(linie))
+                    {
+                        comenzi.Add(new Comanda(linie));
+                    }
                 }
             }
             return comenzi;
@@ -47,7 +49,7 @@ namespace NivelStocareDate
         public bool UpdateComanda(Comanda comandaActualizata)
         {
             List<Comanda> comenzi = GetComenzi();
-            bool actualizareCuSucces = false;
+            bool succes = false;
 
             using (StreamWriter sw = new StreamWriter(numeFisier, false))
             {
@@ -56,7 +58,7 @@ namespace NivelStocareDate
                     if (c.ID == comandaActualizata.ID)
                     {
                         sw.WriteLine(comandaActualizata.ConversieLaSirPentruFisier());
-                        actualizareCuSucces = true;
+                        succes = true;
                     }
                     else
                     {
@@ -64,7 +66,12 @@ namespace NivelStocareDate
                     }
                 }
             }
-            return actualizareCuSucces;
+            return succes;
+        }
+
+        public bool ModificaComanda(Comanda c)
+        {
+            return UpdateComanda(c);
         }
     }
 }

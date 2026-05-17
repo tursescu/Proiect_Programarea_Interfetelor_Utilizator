@@ -39,5 +39,9 @@ namespace NivelStocareDate
             }
             return false;
         }
+        public bool ModificaComanda(Comanda c)
+        {
+            return UpdateComanda(c);
+        }
     }
 }

@@ -23,18 +23,25 @@ namespace InterfataGraficaWPF
 
         private IStocareProduse adminProduse;
         private IStocareComenzi adminComenzi;
+        private IStocareArticoleComenzi adminArticoleComenzi; 
+        private Comanda comandaInEditare = null;
+        private List<ArticolComanda> articoleComandaInEditare = new List<ArticolComanda>();
 
         private List<ArticolComanda> articoleComandaCurenta = new List<ArticolComanda>();
-
-        private Comanda comandaSelectata = null;
 
         public MainWindow()
         {
             InitializeComponent();
             adminProduse = StocareFactory.GetAdministratorStocareProduse();
             adminComenzi = StocareFactory.GetAdministratorStocareComenzi();
+            adminArticoleComenzi = StocareFactory.GetAdministratorStocareArticoleComenzi();
 
             dpDataLivrare.SelectedDate = DateTime.Today.AddDays(1);
+            dpDataAdaugare.SelectedDate = DateTime.Today;
+
+            lbModPlata.ItemsSource = Enum.GetValues(typeof(ModPlata));
+            lbModPlata.SelectedIndex = 0;
+
             ReincarcaProduseInComboBox();
         }
 
@@ -44,6 +51,8 @@ namespace InterfataGraficaWPF
             panelListaProduse.Visibility = Visibility.Collapsed;
             panelAdaugaComanda.Visibility = Visibility.Collapsed;
             panelListaComenzi.Visibility = Visibility.Collapsed;
+            panelModificaProdus.Visibility = Visibility.Collapsed;
+            panelModificaComanda.Visibility = Visibility.Collapsed;
         }
 
         private void btnMeniuAdaugaProdus_Click(object sender, RoutedEventArgs e)
@@ -58,7 +67,30 @@ namespace InterfataGraficaWPF
             panelListaProduse.Visibility = Visibility.Visible;
             AfiseazaToateProdusele();
         }
+        private void btnMeniuModificaProdus_Click(object sender, RoutedEventArgs e)
+        {
+            AscundeToatePanelurile();
+            panelModificaProdus.Visibility = Visibility.Visible;
+            InitializeazaPanelModificaProdus();
+        }
 
+        private void InitializeazaPanelModificaProdus()
+        {
+            cbProduseModificare.ItemsSource = null;
+            cbProduseModificare.ItemsSource = adminProduse.GetProduse();
+            cbProduseModificare.SelectedIndex = -1;
+
+            var caracteristici = new List<CaracteristiciProdus>();
+            foreach (CaracteristiciProdus c in Enum.GetValues(typeof(CaracteristiciProdus)))
+            {
+                if (c != CaracteristiciProdus.Niciuna)
+                    caracteristici.Add(c);
+            }
+            lbCaracteristiciModificare.ItemsSource = caracteristici;
+
+            borderDetaliiProdusModificare.Visibility = Visibility.Collapsed;
+            tbMesajActualizareProdus.Text = string.Empty;
+        }
         private void btnMeniuAdaugaComanda_Click(object sender, RoutedEventArgs e)
         {
             AscundeToatePanelurile();
@@ -85,6 +117,8 @@ namespace InterfataGraficaWPF
             int idNou = GetUrmatorulIdProdus();
             Produs produsNou = new Produs(idNou, nume, detalii, pret);
             produsNou.Caracteristici = GetCaracteristiciSelectate();
+            produsNou.DataAdaugare = dpDataAdaugare.SelectedDate ?? DateTime.Today;
+            produsNou.DataActualizare = DateTime.Today;
 
             adminProduse.AdaugaProdus(produsNou);
 
@@ -109,6 +143,7 @@ namespace InterfataGraficaWPF
             ckbFaraZahar.IsChecked = false;
             ckbFaraGluten.IsChecked = false;
             ckbFaraLactoza.IsChecked = false;
+            dpDataAdaugare.SelectedDate = DateTime.Today;
             AscundeEroare(txtNumeProdus, tbErrNumeProdus);
             AscundeEroare(txtDetaliiProdus, tbErrDetaliiProdus);
             AscundeEroare(txtPretProdus, tbErrPretProdus);
@@ -247,11 +282,81 @@ namespace InterfataGraficaWPF
                 return;
             }
 
-            articoleComandaCurenta.Add(new ArticolComanda(produsSelectat, cantitate));
+            articoleComandaCurenta.Add(new ArticolComanda(0, 0, produsSelectat, cantitate));
             ActualizeazaListaArticole();
             txtCantitate.Text = "1";
         }
+        private void cbProduseModificare_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Produs produsSelectat = cbProduseModificare.SelectedItem as Produs;
+            if (produsSelectat == null)
+            {
+                borderDetaliiProdusModificare.Visibility = Visibility.Collapsed;
+                return;
+            }
+            borderDetaliiProdusModificare.Visibility = Visibility.Visible;
 
+            txtPretModificare.Text = produsSelectat.PretUnitar.ToString();
+            txtDetaliiModificare.Text = produsSelectat.Detalii;
+
+            lbCaracteristiciModificare.SelectedItems.Clear();
+            foreach (CaracteristiciProdus c in Enum.GetValues(typeof(CaracteristiciProdus)))
+            {
+                if (c == CaracteristiciProdus.Niciuna) continue;
+                if (produsSelectat.Caracteristici.HasFlag(c))
+                {
+                    lbCaracteristiciModificare.SelectedItems.Add(c);
+                }
+            }
+
+            tbInfoDateProdus.Text = $"Adăugat: {produsSelectat.DataAdaugareAfisare}  |  Ultima actualizare: {produsSelectat.DataActualizareAfisare}";
+
+            tbMesajActualizareProdus.Text = string.Empty;
+            tbErrPretModificare.Visibility = Visibility.Collapsed;
+        }
+        private void btnActualizeazaProdus_Click(object sender, RoutedEventArgs e)
+        {
+            Produs produsSelectat = cbProduseModificare.SelectedItem as Produs;
+            if (produsSelectat == null)
+            {
+                MessageBox.Show("Selectează un produs!", "Atenție",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            tbErrPretModificare.Visibility = Visibility.Collapsed;
+
+            if (!decimal.TryParse(txtPretModificare.Text.Trim(), out decimal pretNou))
+            {
+                tbErrPretModificare.Text = "Prețul trebuie să fie un număr!";
+                tbErrPretModificare.Visibility = Visibility.Visible;
+                return;
+            }
+            if (pretNou < PRET_MINIM || pretNou > PRET_MAXIM)
+            {
+                tbErrPretModificare.Text = $"Prețul trebuie între {PRET_MINIM} și {PRET_MAXIM} lei!";
+                tbErrPretModificare.Visibility = Visibility.Visible;
+                return;
+            }
+
+            CaracteristiciProdus caracteristiciNoi = CaracteristiciProdus.Niciuna;
+            foreach (var item in lbCaracteristiciModificare.SelectedItems)
+            {
+                caracteristiciNoi |= (CaracteristiciProdus)item;
+            }
+
+            produsSelectat.PretUnitar = pretNou;
+            produsSelectat.Detalii = txtDetaliiModificare.Text.Trim();
+            produsSelectat.Caracteristici = caracteristiciNoi;
+
+            adminProduse.ModificaProdus(produsSelectat);
+
+            tbMesajActualizareProdus.Text = $"Produsul '{produsSelectat.Nume}' a fost actualizat la {produsSelectat.DataActualizare:dd.MM.yyyy HH:mm}!";
+
+            tbInfoDateProdus.Text = $"Adăugat: {produsSelectat.DataAdaugareAfisare}  |  Ultima actualizare: {produsSelectat.DataActualizareAfisare}";
+
+            ReincarcaProduseInComboBox();
+        }
         private void ActualizeazaListaArticole()
         {
             dgArticoleComanda.ItemsSource = null;
@@ -274,17 +379,212 @@ namespace InterfataGraficaWPF
             DateTime dataLivrare = dpDataLivrare.SelectedDate ?? DateTime.Today.AddDays(1);
 
             Comanda comandaNoua = new Comanda(idNou, nume, prenume, telefon, dataLivrare);
-            foreach (var articol in articoleComandaCurenta)
-            {
-                comandaNoua.AdaugaProdus(articol.ProdusComandat, articol.Cantitate);
-            }
+            comandaNoua.ModPlata = (ModPlata)(lbModPlata.SelectedItem ?? ModPlata.Numerar);
 
             adminComenzi.AdaugaComanda(comandaNoua);
+
+            foreach (var articol in articoleComandaCurenta)
+            {
+                articol.IdComanda = idNou;
+                adminArticoleComenzi.AdaugaArticol(articol);
+            }
 
             MessageBox.Show($"Comanda #{idNou} a fost salvată cu succes! Total: {comandaNoua.PretTotal} lei",
                 "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
 
             ResetFormularComanda();
+        }
+        private void btnMeniuModificaComanda_Click(object sender, RoutedEventArgs e)
+        {
+            AscundeToatePanelurile();
+            panelModificaComanda.Visibility = Visibility.Visible;
+            InitializeazaPanelModificaComanda();
+        }
+
+        private void InitializeazaPanelModificaComanda()
+        {
+            var comenzi = adminComenzi.GetComenzi();
+            var displayList = comenzi.Select(c => new
+            {
+                Comanda = c,
+                Display = $"#{c.ID} - {c.NumeClient} {c.PrenumeClient}"
+            }).ToList();
+
+            cbComenziModificare.ItemsSource = null;
+            cbComenziModificare.ItemsSource = displayList;
+            cbComenziModificare.DisplayMemberPath = "Display";
+            cbComenziModificare.SelectedIndex = -1;
+
+            lbModPlataModificare.ItemsSource = null;
+            lbModPlataModificare.ItemsSource = Enum.GetValues(typeof(ModPlata));
+
+            cbProduseAdaugareInComanda.ItemsSource = null;
+            cbProduseAdaugareInComanda.ItemsSource = adminProduse.GetProduse();
+
+            borderDetaliiComandaModificare.Visibility = Visibility.Collapsed;
+            tbMesajActualizareComanda.Text = string.Empty;
+            comandaInEditare = null;
+            articoleComandaInEditare.Clear();
+        }
+        private void cbComenziModificare_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dynamic itemSelectat = cbComenziModificare.SelectedItem;
+            if (itemSelectat == null)
+            {
+                borderDetaliiComandaModificare.Visibility = Visibility.Collapsed;
+                comandaInEditare = null;
+                return;
+            }
+
+            comandaInEditare = itemSelectat.Comanda as Comanda;
+            if (comandaInEditare == null) return;
+
+            borderDetaliiComandaModificare.Visibility = Visibility.Visible;
+
+            txtNumeClientModificare.Text = comandaInEditare.NumeClient;
+            txtPrenumeClientModificare.Text = comandaInEditare.PrenumeClient;
+            txtTelefonModificare.Text = comandaInEditare.NumarTelefon;
+            dpDataLivrareModificare.SelectedDate = comandaInEditare.DataLivrarii;
+
+            lbModPlataModificare.SelectedItem = comandaInEditare.ModPlata;
+
+            rbInAsteptareMod.IsChecked = comandaInEditare.StatusComanda == StatusComanda.InAsteptare;
+            rbInProcesareMod.IsChecked = comandaInEditare.StatusComanda == StatusComanda.InProcesare;
+            rbFinalizataMod.IsChecked = comandaInEditare.StatusComanda == StatusComanda.Finalizata;
+            rbNeplatitaMod.IsChecked = comandaInEditare.StatusPlata == StatusPlata.Neplatita;
+            rbPlatitaMod.IsChecked = comandaInEditare.StatusPlata == StatusPlata.Platita;
+
+            var toateProdusele = adminProduse.GetProduse();
+            articoleComandaInEditare = adminArticoleComenzi.GetArticolePentruComanda(comandaInEditare.ID);
+            foreach (var articol in articoleComandaInEditare)
+            {
+                articol.ProdusComandat = toateProdusele.FirstOrDefault(p => p.ID == articol.IdProdus);
+            }
+
+            ActualizeazaDataGridArticoleModificare();
+
+            AscundeEroare(txtNumeClientModificare, tbErrNumeClientModificare);
+            AscundeEroare(txtPrenumeClientModificare, tbErrPrenumeClientModificare);
+            AscundeEroare(txtTelefonModificare, tbErrTelefonModificare);
+            tbMesajActualizareComanda.Text = string.Empty;
+        }
+        private void ActualizeazaDataGridArticoleModificare()
+        {
+            dgArticoleComandaModificare.ItemsSource = null;
+            dgArticoleComandaModificare.ItemsSource = articoleComandaInEditare;
+
+            decimal total = articoleComandaInEditare.Sum(a => a.PretTotalArticol);
+            tbTotalComandaMod.Text = $"Total comandă: {total} lei";
+        }
+        private void btnAdaugaProdusInComandaMod_Click(object sender, RoutedEventArgs e)
+        {
+            Produs produsSelectat = cbProduseAdaugareInComanda.SelectedItem as Produs;
+            if (produsSelectat == null)
+            {
+                MessageBox.Show("Selectează un produs!", "Atenție",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (!int.TryParse(txtCantitateAdaugareInComanda.Text.Trim(), out int cantitate))
+            {
+                MessageBox.Show("Cantitatea trebuie să fie un număr!", "Atenție",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (cantitate < CANTITATE_MINIMA || cantitate > CANTITATE_MAXIMA)
+            {
+                MessageBox.Show($"Cantitatea trebuie între {CANTITATE_MINIMA} și {CANTITATE_MAXIMA}!", "Atenție",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            var articolNou = new ArticolComanda(0, comandaInEditare.ID, produsSelectat, cantitate);
+            articoleComandaInEditare.Add(articolNou);
+
+            ActualizeazaDataGridArticoleModificare();
+            txtCantitateAdaugareInComanda.Text = "1";
+        }
+        private void btnStergeArticolModificare_Click(object sender, RoutedEventArgs e)
+        {
+            ArticolComanda articolSelectat = dgArticoleComandaModificare.SelectedItem as ArticolComanda;
+            if (articolSelectat == null)
+            {
+                MessageBox.Show("Selectează un articol din tabel pentru a-l șterge!", "Atenție",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            articoleComandaInEditare.Remove(articolSelectat);
+            ActualizeazaDataGridArticoleModificare();
+        }
+        private void btnSalveazaModificariComanda_Click(object sender, RoutedEventArgs e)
+        {
+            if (comandaInEditare == null)
+            {
+                MessageBox.Show("Selectează o comandă!", "Atenție",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            string nume = txtNumeClientModificare.Text.Trim();
+            string prenume = txtPrenumeClientModificare.Text.Trim();
+            string telefon = txtTelefonModificare.Text.Trim();
+
+            AscundeEroare(txtNumeClientModificare, tbErrNumeClientModificare);
+            AscundeEroare(txtPrenumeClientModificare, tbErrPrenumeClientModificare);
+            AscundeEroare(txtTelefonModificare, tbErrTelefonModificare);
+
+            if (string.IsNullOrEmpty(nume))
+            {
+                AfiseazaEroare(txtNumeClientModificare, tbErrNumeClientModificare, "Numele este obligatoriu!");
+                return;
+            }
+            if (string.IsNullOrEmpty(prenume))
+            {
+                AfiseazaEroare(txtPrenumeClientModificare, tbErrPrenumeClientModificare, "Prenumele este obligatoriu!");
+                return;
+            }
+            if (telefon.Length != LUNGIME_TELEFON || !telefon.All(char.IsDigit))
+            {
+                AfiseazaEroare(txtTelefonModificare, tbErrTelefonModificare, $"Telefonul trebuie să conțină exact {LUNGIME_TELEFON} cifre!");
+                return;
+            }
+
+            comandaInEditare.NumeClient = nume;
+            comandaInEditare.PrenumeClient = prenume;
+            comandaInEditare.NumarTelefon = telefon;
+            comandaInEditare.DataLivrarii = dpDataLivrareModificare.SelectedDate ?? DateTime.Today;
+            comandaInEditare.ModPlata = (ModPlata)(lbModPlataModificare.SelectedItem ?? ModPlata.Numerar);
+            comandaInEditare.StatusComanda = GetStatusComandaModSelectat();
+            comandaInEditare.StatusPlata = GetStatusPlataModSelectat();
+
+            adminComenzi.ModificaComanda(comandaInEditare);
+
+            adminArticoleComenzi.StergeToatePentruComanda(comandaInEditare.ID);
+            foreach (var articol in articoleComandaInEditare)
+            {
+                articol.ID = 0;
+                articol.IdComanda = comandaInEditare.ID;
+                adminArticoleComenzi.AdaugaArticol(articol);
+            }
+
+            tbMesajActualizareComanda.Text = $"Comanda #{comandaInEditare.ID} a fost actualizată cu succes!";
+
+            InitializeazaPanelModificaComanda();
+        }
+
+        private StatusComanda GetStatusComandaModSelectat()
+        {
+            if (rbInProcesareMod.IsChecked == true) return StatusComanda.InProcesare;
+            if (rbFinalizataMod.IsChecked == true) return StatusComanda.Finalizata;
+            return StatusComanda.InAsteptare;
+        }
+
+        private StatusPlata GetStatusPlataModSelectat()
+        {
+            if (rbPlatitaMod.IsChecked == true) return StatusPlata.Platita;
+            return StatusPlata.Neplatita;
         }
 
         private void btnReseteazaComanda_Click(object sender, RoutedEventArgs e)
@@ -300,6 +600,7 @@ namespace InterfataGraficaWPF
             dpDataLivrare.SelectedDate = DateTime.Today.AddDays(1);
             txtCantitate.Text = "1";
             cbProduse.SelectedIndex = -1;
+            lbModPlata.SelectedIndex = 0;
             articoleComandaCurenta.Clear();
             ActualizeazaListaArticole();
             AscundeEroare(txtNumeClient, tbErrNumeClient);
@@ -367,68 +668,20 @@ namespace InterfataGraficaWPF
 
         private void AfiseazaComenzi()
         {
+            List<Comanda> comenzi = adminComenzi.GetComenzi();
+
+            List<Produs> toateProdusele = adminProduse.GetProduse();
+            foreach (Comanda c in comenzi)
+            {
+                c.Produse = adminArticoleComenzi.GetArticolePentruComanda(c.ID);
+                foreach (ArticolComanda articol in c.Produse)
+                {
+                    articol.ProdusComandat = toateProdusele.FirstOrDefault(p => p.ID == articol.IdProdus);
+                }
+            }
+
             dgComenzi.ItemsSource = null;
-            dgComenzi.ItemsSource = adminComenzi.GetComenzi();
-            comandaSelectata = null;
-            DezactiveazaRadioButtons();
-        }
-
-        private void dgComenzi_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            comandaSelectata = dgComenzi.SelectedItem as Comanda;
-            if (comandaSelectata == null)
-            {
-                DezactiveazaRadioButtons();
-                return;
-            }
-
-            rbInAsteptare.IsChecked = comandaSelectata.StatusComanda == StatusComanda.InAsteptare;
-            rbInProcesare.IsChecked = comandaSelectata.StatusComanda == StatusComanda.InProcesare;
-            rbFinalizata.IsChecked = comandaSelectata.StatusComanda == StatusComanda.Finalizata;
-
-            rbNeplatita.IsChecked = comandaSelectata.StatusPlata == StatusPlata.Neplatita;
-            rbPlatita.IsChecked = comandaSelectata.StatusPlata == StatusPlata.Platita;
-        }
-
-        private void DezactiveazaRadioButtons()
-        {
-            rbInAsteptare.IsChecked = false;
-            rbInProcesare.IsChecked = false;
-            rbFinalizata.IsChecked = false;
-            rbNeplatita.IsChecked = false;
-            rbPlatita.IsChecked = false;
-        }
-
-        private void btnSalveazaStatus_Click(object sender, RoutedEventArgs e)
-        {
-            if (comandaSelectata == null)
-            {
-                MessageBox.Show("Selectează o comandă din tabel!", "Atenție",
-                    MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            comandaSelectata.StatusComanda = GetStatusComandaSelectat();
-            comandaSelectata.StatusPlata = GetStatusPlataSelectat();
-
-            adminComenzi.UpdateComanda(comandaSelectata);
-            MessageBox.Show($"Statusurile pentru comanda #{comandaSelectata.ID} au fost actualizate!",
-                "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
-
-            AfiseazaComenzi();
-        }
-
-        private StatusComanda GetStatusComandaSelectat()
-        {
-            if (rbInProcesare.IsChecked == true) return StatusComanda.InProcesare;
-            if (rbFinalizata.IsChecked == true) return StatusComanda.Finalizata;
-            return StatusComanda.InAsteptare;
-        }
-
-        private StatusPlata GetStatusPlataSelectat()
-        {
-            if (rbPlatita.IsChecked == true) return StatusPlata.Platita;
-            return StatusPlata.Neplatita;
+            dgComenzi.ItemsSource = comenzi;
         }
 
         private void AscundeEroare(TextBox textBox, TextBlock tbEroare)

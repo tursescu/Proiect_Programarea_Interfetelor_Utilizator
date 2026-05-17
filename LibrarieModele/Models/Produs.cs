@@ -14,12 +14,19 @@ namespace LibrarieModele.Models
         private const int INDEX_PRET = 2;
         private const int INDEX_DETALII = 3;
         private const int INDEX_CARACTERISTICI = 4;
+        private const int INDEX_DATA_ADAUGARE = 5;
+        private const int INDEX_DATA_ACTUALIZARE = 6;
 
         public int ID { get; set; }
         public string Nume { get; set; }
         public decimal PretUnitar { get; set; }
         public string Detalii { get; set; }
         public CaracteristiciProdus Caracteristici { get; set; }
+        public DateTime DataAdaugare { get; set; }
+        public DateTime DataActualizare { get; set; }
+
+        public string DataAdaugareAfisare => DataAdaugare.ToString("dd.MM.yyyy");
+        public string DataActualizareAfisare => DataActualizare.ToString("dd.MM.yyyy");
 
         public Produs(int id, string nume, string detalii, decimal pretUnitar)
         {
@@ -28,6 +35,8 @@ namespace LibrarieModele.Models
             this.Detalii = detalii;
             this.PretUnitar = pretUnitar;
             this.Caracteristici = CaracteristiciProdus.Niciuna;
+            this.DataAdaugare = DateTime.Today;
+            this.DataActualizare = DateTime.Today;
         }
 
         public Produs(string linieFisier)
@@ -39,17 +48,37 @@ namespace LibrarieModele.Models
             this.PretUnitar = Convert.ToDecimal(dateFisier[INDEX_PRET]);
             this.Detalii = dateFisier[INDEX_DETALII];
             this.Caracteristici = (CaracteristiciProdus)Convert.ToInt32(dateFisier[INDEX_CARACTERISTICI]);
+
+            if (dateFisier.Length > INDEX_DATA_ADAUGARE && DateTime.TryParse(dateFisier[INDEX_DATA_ADAUGARE], out DateTime da))
+            {
+                this.DataAdaugare = da;
+            }
+            else
+            {
+                this.DataAdaugare = DateTime.Today;
+            }
+
+            if (dateFisier.Length > INDEX_DATA_ACTUALIZARE && DateTime.TryParse(dateFisier[INDEX_DATA_ACTUALIZARE], out DateTime dact))
+            {
+                this.DataActualizare = dact;
+            }
+            else
+            {
+                this.DataActualizare = DateTime.Today;
+            }
         }
 
         public string ConversieLaSirPentruFisier()
         {
-            return string.Format("{1}{0}{2}{0}{3}{0}{4}{0}{5}",
+            return string.Format("{1}{0}{2}{0}{3}{0}{4}{0}{5}{0}{6}{0}{7}",
                 SEPARATOR_PRINCIPAL_FISIER,
                 ID.ToString(),
                 (Nume ?? "NECUNOSCUT"),
                 PretUnitar.ToString(),
                 (Detalii ?? "Fara detalii"),
-                (int)Caracteristici);
+                (int)Caracteristici,
+                DataAdaugare.ToString("yyyy-MM-dd"),
+                DataActualizare.ToString("yyyy-MM-dd"));
         }
     }
 }

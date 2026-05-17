@@ -5,10 +5,11 @@ namespace NivelStocareDate
 {
     public interface IStocareProduse
     {
-        List<Produs> GetProduseDupaNume(string nume);
         void AdaugaProdus(Produs p);
         List<Produs> GetProduse();
         Produs GetProdusDupaNume(string nume);
-        bool UpdateProdus(Produs p); // Cerinta pentru modificare
+        List<Produs> GetProduseDupaNume(string nume);
+        bool UpdateProdus(Produs p);
+        bool ModificaProdus(Produs p);  
     }
 }

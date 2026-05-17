@@ -1,3 +1,6 @@
-1;Ecler cu ciocolata;15.5;Glazura;0
-2;Tarta cu fructe;20;Mascarpone;3
-3;Macaron;6;Capsuni;0
+1;Ecler;7;Umplutura cu aroma de vanilie si glazura de ciocolata;0;2026-05-17;2026-05-17
+2;Macaron;3;Diverse sortimente;8;2026-05-16;2026-05-17
+3;Gogoasa cu Zmeura;5;Umplutura din dulceata de zmeura;4;2026-05-17;2026-05-17
+4;Prajitura Diplomat;8.5;Pret/buc;0;2026-05-17;2026-05-17
+5;Medovik;12;Pret/Buc;0;2026-05-12;2026-05-17
+6;Prajitura Oreo;11;Pret/Buc;0;2026-05-17;2026-05-17

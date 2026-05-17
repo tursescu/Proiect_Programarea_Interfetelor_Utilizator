@@ -73,5 +73,11 @@ namespace NivelStocareDate
             }
             return actualizareCuSucces;
         }
+        public bool ModificaProdus(Produs produsActualizat)
+        {
+            produsActualizat.DataActualizare = DateTime.Now;
+
+            return UpdateProdus(produsActualizat);
+        }
     }
 }
