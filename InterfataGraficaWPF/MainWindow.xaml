@@ -93,11 +93,12 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Text="Listă / Caută produse"
-                           FontSize="20" FontWeight="Bold" Margin="0,0,0,15"/>
+               FontSize="20" FontWeight="Bold" Margin="0,0,0,15"/>
 
                 <Grid Grid.Row="1" Margin="0,0,0,10">
                     <Grid.ColumnDefinitions>
@@ -110,22 +111,28 @@
 
                     <Label Grid.Column="0" Content="Caută după nume:" VerticalAlignment="Center"/>
                     <TextBox Grid.Column="1" x:Name="txtCautaProdus" Height="28"
-                             Padding="6,0" VerticalContentAlignment="Center" Margin="5,0"/>
+                 Padding="6,0" VerticalContentAlignment="Center" Margin="5,0"/>
                     <Button Grid.Column="2" x:Name="btnCautaProdus" Content="Caută"
-                            Width="100" Height="28" Margin="5,0,0,0"
-                            Click="btnCautaProdus_Click"/>
+                Width="100" Height="28" Margin="5,0,0,0"
+                Click="btnCautaProdus_Click"/>
                     <Button Grid.Column="3" x:Name="btnAfiseazaToateProduse" Content="Toate"
-                            Width="100" Height="28" Margin="5,0,0,0"
-                            Click="btnAfiseazaToateProduse_Click"/>
+                Width="100" Height="28" Margin="5,0,0,0"
+                Click="btnAfiseazaToateProduse_Click"/>
                     <Label Grid.Column="4" x:Name="lblMesajCautareProdus"
-                           Foreground="Red" VerticalAlignment="Center" Margin="10,0,0,0"/>
+               Foreground="Red" VerticalAlignment="Center" Margin="10,0,0,0"/>
                 </Grid>
 
-                <DataGrid Grid.Row="2" x:Name="dgProduse"
-                          AutoGenerateColumns="False" IsReadOnly="True"
-                          CanUserAddRows="False" CanUserDeleteRows="False"
-                          HeadersVisibility="Column" GridLinesVisibility="All"
-                          AlternatingRowBackground="#F5F5F5" RowHeight="26">
+                <TextBlock x:Name="lblNrProduse"
+                        Grid.Row="2"
+                        Text="{Binding ElementName=dgProduse, Path=Items.Count, StringFormat='Număr produse: {0}'}"
+                        FontWeight="Bold"
+                        Margin="0,0,0,6"/>
+
+                <DataGrid Grid.Row="3" x:Name="dgProduse"
+                        AutoGenerateColumns="False" IsReadOnly="True"
+                        CanUserAddRows="False" CanUserDeleteRows="False"
+                        HeadersVisibility="Column" GridLinesVisibility="All"
+                        AlternatingRowBackground="#F5F5F5" RowHeight="26">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="40"/>
                         <DataGridTextColumn Header="Nume" Binding="{Binding Nume}" Width="160"/>
@@ -249,18 +256,25 @@
             <Grid x:Name="panelListaComenzi" Visibility="Collapsed" Margin="20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Text="Listă comenzi"
                FontSize="20" FontWeight="Bold" Margin="0,0,0,15"/>
 
-                <DataGrid Grid.Row="1" x:Name="dgComenzi"
-              AutoGenerateColumns="False" IsReadOnly="True"
-              CanUserAddRows="False" CanUserDeleteRows="False"
-              HeadersVisibility="Column" GridLinesVisibility="All"
-              AlternatingRowBackground="#F5F5F5" RowHeight="26"
-              SelectionMode="Single">
+                <TextBlock x:Name="lblNrComenzi"
+                        Grid.Row="1"
+                        Text="{Binding ElementName=dgComenzi, Path=Items.Count, StringFormat='Număr comenzi: {0}'}"
+                        FontWeight="Bold"
+                        Margin="0,0,0,6"/>
+
+                <DataGrid Grid.Row="2" x:Name="dgComenzi"
+                         AutoGenerateColumns="False" IsReadOnly="True"
+                         CanUserAddRows="False" CanUserDeleteRows="False"
+                        HeadersVisibility="Column" GridLinesVisibility="All"
+                        AlternatingRowBackground="#F5F5F5" RowHeight="26"
+                        SelectionMode="Single">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="40"/>
                         <DataGridTextColumn Header="Nume" Binding="{Binding NumeClient}" Width="110"/>
