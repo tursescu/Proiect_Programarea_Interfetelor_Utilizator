@@ -8,10 +8,8 @@
         Background="#FAF5E9"
         FontFamily="Segoe UI">
 
-    <!-- ════════════ STILURI REUTILIZABILE (Window.Resources) ════════════ -->
     <Window.Resources>
 
-        <!-- Culori centrale (Color + Brush pentru fiecare) -->
         <SolidColorBrush x:Key="MaroInchis" Color="#5C3317"/>
         <SolidColorBrush x:Key="MaroTitlu" Color="#8B4513"/>
         <SolidColorBrush x:Key="PortocaliuAccent" Color="#C97B4F"/>
@@ -21,7 +19,6 @@
         <SolidColorBrush x:Key="CreamSecundar" Color="#FDE8C4"/>
         <SolidColorBrush x:Key="Bordura" Color="#E8D8B7"/>
 
-        <!-- Stil pentru butoane din meniul lateral -->
         <Style x:Key="ButonMeniu" TargetType="Button">
             <Setter Property="Background" Value="{StaticResource PortocaliuAccent}"/>
             <Setter Property="Foreground" Value="White"/>
@@ -38,13 +35,11 @@
                                 Background="{TemplateBinding Background}"
                                 CornerRadius="6"
                                 Padding="8">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background"
-                                        Value="{StaticResource PortocaliuHover}"/>
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource PortocaliuHover}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -52,7 +47,6 @@
             </Setter>
         </Style>
 
-        <!-- Stil pentru butoane de actiune (Adauga, Salveaza, etc.) -->
         <Style x:Key="ButonActiune" TargetType="Button">
             <Setter Property="Background" Value="{StaticResource MaroTitlu}"/>
             <Setter Property="Foreground" Value="White"/>
@@ -64,21 +58,15 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="border"
-                                Background="{TemplateBinding Background}"
-                                CornerRadius="4"
-                                Padding="{TemplateBinding Padding}">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"/>
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="4" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background"
-                                        Value="#6B3D1F"/>
+                                <Setter TargetName="border" Property="Background" Value="#6B3D1F"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="border" Property="Background"
-                                        Value="#B8A98F"/>
+                                <Setter TargetName="border" Property="Background" Value="#B8A98F"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -86,7 +74,6 @@
             </Setter>
         </Style>
 
-        <!-- Stil pentru butoane secundare (Reset, Stergere, etc.) -->
         <Style x:Key="ButonSecundar" TargetType="Button">
             <Setter Property="Background" Value="#A89070"/>
             <Setter Property="Foreground" Value="White"/>
@@ -98,12 +85,8 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="border"
-                                Background="{TemplateBinding Background}"
-                                CornerRadius="4"
-                                Padding="{TemplateBinding Padding}">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"/>
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="4" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -115,7 +98,6 @@
             </Setter>
         </Style>
 
-        <!-- Stil pentru TextBox-uri -->
         <Style TargetType="TextBox">
             <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="{StaticResource MaroInchis}"/>
@@ -127,7 +109,6 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
 
-        <!-- Stil pentru ComboBox -->
         <Style TargetType="ComboBox">
             <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="{StaticResource MaroInchis}"/>
@@ -138,7 +119,6 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
 
-        <!-- Stil pentru ListBox -->
         <Style TargetType="ListBox">
             <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="{StaticResource MaroInchis}"/>
@@ -147,14 +127,12 @@
             <Setter Property="FontSize" Value="13"/>
         </Style>
 
-        <!-- Stil pentru Label-uri (din formulare) -->
         <Style TargetType="Label">
             <Setter Property="Foreground" Value="{StaticResource MaroTitlu}"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="FontSize" Value="13"/>
         </Style>
 
-        <!-- Stil pentru titluri de panel -->
         <Style x:Key="TitluPanel" TargetType="TextBlock">
             <Setter Property="FontSize" Value="22"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -162,7 +140,6 @@
             <Setter Property="Margin" Value="0,0,0,15"/>
         </Style>
 
-        <!-- Stil pentru DataGrid -->
         <Style TargetType="DataGrid">
             <Setter Property="Background" Value="White"/>
             <Setter Property="BorderBrush" Value="{StaticResource Bordura}"/>
@@ -176,7 +153,6 @@
             <Setter Property="Foreground" Value="{StaticResource MaroInchis}"/>
         </Style>
 
-        <!-- Stil pentru header-ele coloanelor din DataGrid -->
         <Style TargetType="DataGridColumnHeader">
             <Setter Property="Background" Value="{StaticResource MaroTitlu}"/>
             <Setter Property="Foreground" Value="White"/>
@@ -186,7 +162,6 @@
             <Setter Property="BorderThickness" Value="0,0,1,0"/>
         </Style>
 
-        <!-- Stil pentru GroupBox -->
         <Style TargetType="GroupBox">
             <Setter Property="BorderBrush" Value="{StaticResource Auriu}"/>
             <Setter Property="BorderThickness" Value="1"/>
@@ -195,7 +170,6 @@
             <Setter Property="Padding" Value="10"/>
         </Style>
 
-        <!-- Stil pentru CheckBox + RadioButton -->
         <Style TargetType="CheckBox">
             <Setter Property="Foreground" Value="{StaticResource MaroInchis}"/>
             <Setter Property="FontSize" Value="13"/>
@@ -205,7 +179,6 @@
             <Setter Property="FontSize" Value="13"/>
         </Style>
 
-        <!-- Stil pentru DatePicker -->
         <Style TargetType="DatePicker">
             <Setter Property="Height" Value="30"/>
             <Setter Property="FontSize" Value="13"/>
@@ -214,41 +187,38 @@
     </Window.Resources>
 
     <DockPanel>
-
-        <StackPanel DockPanel.Dock="Left"
-            Width="220"
-            Background="{StaticResource CreamMeniu}">
-            <Border BorderBrush="{StaticResource Auriu}" BorderThickness="0,0,0,2"
-            Padding="10,15">
-                <TextBlock Text="Cofetărie"
-                   FontSize="22"
-                   FontWeight="Bold"
-                   Foreground="{StaticResource MaroTitlu}"
-                   HorizontalAlignment="Center"/>
+        <StackPanel DockPanel.Dock="Left" Width="220" Background="{StaticResource CreamMeniu}">
+            <Border BorderBrush="{StaticResource Auriu}" BorderThickness="0,0,0,2" Padding="10,15">
+                <TextBlock Text="Cofetărie" FontSize="22" FontWeight="Bold" Foreground="{StaticResource MaroTitlu}" HorizontalAlignment="Center"/>
             </Border>
 
-            <Button x:Name="btnMeniuAdaugaProdus" Content="🍰 Adaugă produs"
-            Style="{StaticResource ButonMeniu}"
-            Click="btnMeniuAdaugaProdus_Click"/>
-            <Button x:Name="btnMeniuListaProduse" Content="📋 Listă / Caută produse"
-            Style="{StaticResource ButonMeniu}"
-            Click="btnMeniuListaProduse_Click"/>
-            <Button x:Name="btnMeniuModificaProdus" Content="✏️ Modifică produs"
-            Style="{StaticResource ButonMeniu}"
-            Click="btnMeniuModificaProdus_Click"/>
-            <Button x:Name="btnMeniuAdaugaComanda" Content="🛒 Adaugă comandă"
-            Style="{StaticResource ButonMeniu}"
-            Click="btnMeniuAdaugaComanda_Click"/>
-            <Button x:Name="btnMeniuListaComenzi" Content="📦 Listă comenzi"
-            Style="{StaticResource ButonMeniu}"
-            Click="btnMeniuListaComenzi_Click"/>
-            <Button x:Name="btnMeniuModificaComanda" Content="✏️ Modifică comandă"
-            Style="{StaticResource ButonMeniu}"
-            Click="btnMeniuModificaComanda_Click"/>
+            <Button x:Name="btnMeniuAdaugaProdus" 
+                    Content="🍰 Adaugă produs" 
+                    Style="{StaticResource ButonMeniu}" 
+                    Click="btnMeniuAdaugaProdus_Click"/>
+            <Button x:Name="btnMeniuListaProduse" 
+                    Content="📋 Listă / Caută produse" 
+                    Style="{StaticResource ButonMeniu}" 
+                    Click="btnMeniuListaProduse_Click"/>
+            <Button x:Name="btnMeniuModificaProdus" 
+                    Content="✏️ Modifică produs" 
+                    Style="{StaticResource ButonMeniu}" 
+                    Click="btnMeniuModificaProdus_Click"/>
+            <Button x:Name="btnMeniuAdaugaComanda" 
+                    Content="🛒 Adaugă comandă" 
+                    Style="{StaticResource ButonMeniu}" 
+                    Click="btnMeniuAdaugaComanda_Click"/>
+            <Button x:Name="btnMeniuListaComenzi" 
+                    Content="📦 Listă comenzi" 
+                    Style="{StaticResource ButonMeniu}" 
+                    Click="btnMeniuListaComenzi_Click"/>
+            <Button x:Name="btnMeniuModificaComanda" 
+                    Content="✏️ Modifică comandă" 
+                    Style="{StaticResource ButonMeniu}" 
+                    Click="btnMeniuModificaComanda_Click"/>
         </StackPanel>
 
         <Grid>
-
             <ScrollViewer x:Name="panelAdaugaProdus" Visibility="Visible" VerticalScrollBarVisibility="Auto">
                 <StackPanel Margin="20">
                     <TextBlock Text="Adaugă produs nou" Style="{StaticResource TitluPanel}"/>
@@ -261,30 +231,21 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="0">
-                            <Label Content="_Nume produs" Target="{Binding ElementName=txtNumeProdus}"
-                                   FontWeight="Bold" Padding="0" Margin="0,0,0,4"/>
-                            <TextBox x:Name="txtNumeProdus" Height="28" Padding="6,0"
-                                     VerticalContentAlignment="Center"/>
-                            <TextBlock x:Name="tbErrNumeProdus" FontSize="11" Foreground="Red"
-                                       Margin="0,2,0,0" Visibility="Collapsed"/>
+                            <Label Content="_Nume produs" Target="{Binding ElementName=txtNumeProdus}" FontWeight="Bold" Padding="0" Margin="0,0,0,4"/>
+                            <TextBox x:Name="txtNumeProdus" Height="28" Padding="6,0" VerticalContentAlignment="Center"/>
+                            <TextBlock x:Name="tbErrNumeProdus" FontSize="11" Foreground="Red" Margin="0,2,0,0" Visibility="Collapsed"/>
                         </StackPanel>
 
                         <StackPanel Grid.Column="2">
-                            <Label Content="_Pret (lei)" Target="{Binding ElementName=txtPretProdus}"
-                                   FontWeight="Bold" Padding="0" Margin="0,0,0,4"/>
-                            <TextBox x:Name="txtPretProdus" Height="28" Padding="6,0"
-                                     VerticalContentAlignment="Center"/>
-                            <TextBlock x:Name="tbErrPretProdus" FontSize="11" Foreground="Red"
-                                       Margin="0,2,0,0" Visibility="Collapsed"/>
+                            <Label Content="_Pret (lei)" Target="{Binding ElementName=txtPretProdus}" FontWeight="Bold" Padding="0" Margin="0,0,0,4"/>
+                            <TextBox x:Name="txtPretProdus" Height="28" Padding="6,0" VerticalContentAlignment="Center"/>
+                            <TextBlock x:Name="tbErrPretProdus" FontSize="11" Foreground="Red" Margin="0,2,0,0" Visibility="Collapsed"/>
                         </StackPanel>
                     </Grid>
 
-                    <Label Content="_Detalii" Target="{Binding ElementName=txtDetaliiProdus}"
-                           FontWeight="Bold" Padding="0" Margin="0,8,0,4"/>
-                    <TextBox x:Name="txtDetaliiProdus" Height="28" Padding="6,0"
-                             VerticalContentAlignment="Center"/>
-                    <TextBlock x:Name="tbErrDetaliiProdus" FontSize="11" Foreground="Red"
-                               Margin="0,2,0,8" Visibility="Collapsed"/>
+                    <Label Content="_Detalii" Target="{Binding ElementName=txtDetaliiProdus}" FontWeight="Bold" Padding="0" Margin="0,8,0,4"/>
+                    <TextBox x:Name="txtDetaliiProdus" Height="28" Padding="6,0" VerticalContentAlignment="Center"/>
+                    <TextBlock x:Name="tbErrDetaliiProdus" FontSize="11" Foreground="Red" Margin="0,2,0,8" Visibility="Collapsed"/>
 
                     <GroupBox Header="Caracteristici produs" Margin="0,8,0,10">
                         <WrapPanel Orientation="Horizontal" Margin="5">
@@ -297,17 +258,26 @@
 
                     <Label Content="_Data adăugare" Target="{Binding ElementName=dpDataAdaugare}" FontWeight="Bold" Padding="0" Margin="0,8,0,4"/>
                     <DatePicker x:Name="dpDataAdaugare" Height="28" HorizontalAlignment="Left" Width="200" Margin="0,0,0,10"/>
-                    
+
                     <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                        <Button x:Name="btnSalveazaProdus" Content="Adaugă" 
-                                Style="{StaticResource ButonActiune}"
-                                Width="120" Height="32" FontWeight="Bold"
-                                Margin="0,0,10,0" Click="btnSalveazaProdus_Click"/>
-                        <Button x:Name="btnReseteazaProdus" Content="Reset"
-                                Style="{StaticResource ButonSecundar}"
-                                Width="120" Height="32" FontWeight="Bold"
+                        <Button x:Name="btnSalveazaProdus" 
+                                Content="Adaugă" 
+                                Style="{StaticResource ButonActiune}" 
+                                Width="120" 
+                                Height="32" 
+                                FontWeight="Bold" 
+                                Margin="0,0,10,0" 
+                                Click="btnSalveazaProdus_Click"/>
+                        <Button x:Name="btnReseteazaProdus" 
+                                Content="Reset" 
+                                Style="{StaticResource ButonSecundar}" 
+                                Width="120" 
+                                Height="32" 
+                                FontWeight="Bold" 
                                 Click="btnReseteazaProdus_Click"/>
                     </StackPanel>
+
+                    <TextBlock x:Name="tbMesajAdaugaProdus" FontWeight="Bold" Margin="0,10,0,0"/>
                 </StackPanel>
             </ScrollViewer>
 
@@ -331,31 +301,38 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Content="Caută după nume:" VerticalAlignment="Center"/>
-                    <TextBox Grid.Column="1" x:Name="txtCautaProdus" Height="28"
-                 Padding="6,0" VerticalContentAlignment="Center" Margin="5,0"/>
-                    <Button Grid.Column="2" x:Name="btnCautaProdus" Content="Caută"
-                            Style="{StaticResource ButonActiune}"
-                            Width="100" Height="28" Margin="5,0,0,0"
+                    <TextBox Grid.Column="1" x:Name="txtCautaProdus" Height="28" Padding="6,0" VerticalContentAlignment="Center" Margin="5,0"/>
+                    <Button Grid.Column="2" x:Name="btnCautaProdus" 
+                            Content="Caută" 
+                            Style="{StaticResource ButonActiune}" 
+                            Width="100"
+                            Height="28" 
+                            Margin="5,0,0,0" 
                             Click="btnCautaProdus_Click"/>
-                    <Button Grid.Column="3" x:Name="btnAfiseazaToateProduse" Content="Toate"
-                            Style="{StaticResource ButonActiune}"
-                            Width="100" Height="28" Margin="5,0,0,0"
+                    <Button Grid.Column="3" x:Name="btnAfiseazaToateProduse" 
+                            Content="Toate" 
+                            Style="{StaticResource ButonActiune}" 
+                            Width="100" 
+                            Height="28" 
+                            Margin="5,0,0,0" 
                             Click="btnAfiseazaToateProduse_Click"/>
-                    <Label Grid.Column="4" x:Name="lblMesajCautareProdus"
-               Foreground="Red" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <Label Grid.Column="4" x:Name="lblMesajCautareProdus" Foreground="Red" VerticalAlignment="Center" Margin="10,0,0,0"/>
                 </Grid>
 
-                <TextBlock x:Name="lblNrProduse"
-                        Grid.Row="2"
-                        Text="{Binding ElementName=dgProduse, Path=Items.Count, StringFormat='Număr produse: {0}'}"
-                        FontWeight="Bold"
-                        Margin="0,0,0,6"/>
+                <TextBlock x:Name="lblNrProduse" Grid.Row="2" 
+                           Text="{Binding ElementName=dgProduse, Path=Items.Count, StringFormat='Număr produse: {0}'}" 
+                           FontWeight="Bold" 
+                           Margin="0,0,0,6"/>
 
-                <DataGrid Grid.Row="3" x:Name="dgProduse"
-                        AutoGenerateColumns="False" IsReadOnly="True"
-                        CanUserAddRows="False" CanUserDeleteRows="False"
-                        HeadersVisibility="Column" GridLinesVisibility="All"
-                        AlternatingRowBackground="#F5F5F5" RowHeight="26">
+                <DataGrid Grid.Row="3" x:Name="dgProduse" 
+                          AutoGenerateColumns="False" 
+                          IsReadOnly="True" 
+                          CanUserAddRows="False" 
+                          CanUserDeleteRows="False" 
+                          HeadersVisibility="Column" 
+                          GridLinesVisibility="All" 
+                          AlternatingRowBackground="#F5F5F5" 
+                          RowHeight="26">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="40"/>
                         <DataGridTextColumn Header="Nume" Binding="{Binding Nume}" Width="160"/>
@@ -380,21 +357,15 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="0">
-                            <Label Content="_Nume client" Target="{Binding ElementName=txtNumeClient}"
-                                   FontWeight="Bold" Padding="0" Margin="0,0,0,4"/>
-                            <TextBox x:Name="txtNumeClient" Height="28" Padding="6,0"
-                                     VerticalContentAlignment="Center"/>
-                            <TextBlock x:Name="tbErrNumeClient" FontSize="11" Foreground="Red"
-                                       Margin="0,2,0,0" Visibility="Collapsed"/>
+                            <Label Content="_Nume client" Target="{Binding ElementName=txtNumeClient}" FontWeight="Bold" Padding="0" Margin="0,0,0,4"/>
+                            <TextBox x:Name="txtNumeClient" Height="28" Padding="6,0" VerticalContentAlignment="Center"/>
+                            <TextBlock x:Name="tbErrNumeClient" FontSize="11" Foreground="Red" Margin="0,2,0,0" Visibility="Collapsed"/>
                         </StackPanel>
 
                         <StackPanel Grid.Column="2">
-                            <Label Content="_Prenume client" Target="{Binding ElementName=txtPrenumeClient}"
-                                   FontWeight="Bold" Padding="0" Margin="0,0,0,4"/>
-                            <TextBox x:Name="txtPrenumeClient" Height="28" Padding="6,0"
-                                     VerticalContentAlignment="Center"/>
-                            <TextBlock x:Name="tbErrPrenumeClient" FontSize="11" Foreground="Red"
-                                       Margin="0,2,0,0" Visibility="Collapsed"/>
+                            <Label Content="_Prenume client" Target="{Binding ElementName=txtPrenumeClient}" FontWeight="Bold" Padding="0" Margin="0,0,0,4"/>
+                            <TextBox x:Name="txtPrenumeClient" Height="28" Padding="6,0" VerticalContentAlignment="Center"/>
+                            <TextBlock x:Name="tbErrPrenumeClient" FontSize="11" Foreground="Red" Margin="0,2,0,0" Visibility="Collapsed"/>
                         </StackPanel>
                     </Grid>
 
@@ -429,26 +400,26 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
-                                <ComboBox Grid.Column="0" x:Name="cbProduse" Height="28"
-                                          DisplayMemberPath="Nume"
-                                          VerticalContentAlignment="Center"/>
-                                <TextBox Grid.Column="1" x:Name="txtCantitate" Height="28"
-                                         Padding="6,0" Margin="5,0"
-                                         VerticalContentAlignment="Center"
-                                         Text="1"/>
-                                <Button Grid.Column="2" x:Name="btnAdaugaProdusInComanda"
-                                        Style="{StaticResource ButonActiune}"
-                                        Content="Adaugă" Width="100" Height="28"
+                                <ComboBox Grid.Column="0" x:Name="cbProduse" Height="28" DisplayMemberPath="Nume" VerticalContentAlignment="Center"/>
+                                <TextBox Grid.Column="1" x:Name="txtCantitate" Height="28" Padding="6,0" Margin="5,0" VerticalContentAlignment="Center" Text="1"/>
+                                <Button Grid.Column="2" x:Name="btnAdaugaProdusInComanda" 
+                                        Style="{StaticResource ButonActiune}" 
+                                        Content="Adaugă" 
+                                        Width="100" 
+                                        Height="28" 
                                         Click="btnAdaugaProdusInComanda_Click"/>
                             </Grid>
-                            <TextBlock x:Name="tbErrCantitate" FontSize="11" Foreground="Red"
-                                       Margin="0,2,0,5" Visibility="Collapsed"/>
+                            <TextBlock x:Name="tbErrCantitate" FontSize="11" Foreground="Red" Margin="0,2,0,5" Visibility="Collapsed"/>
 
-                            <DataGrid x:Name="dgArticoleComanda" Height="120"
-                                      AutoGenerateColumns="False" IsReadOnly="True"
-                                      CanUserAddRows="False" CanUserDeleteRows="False"
-                                      HeadersVisibility="Column" GridLinesVisibility="All"
-                                      AlternatingRowBackground="#F5F5F5" RowHeight="24">
+                            <DataGrid x:Name="dgArticoleComanda" Height="120" 
+                                      AutoGenerateColumns="False" 
+                                      IsReadOnly="True" 
+                                      CanUserAddRows="False" 
+                                      CanUserDeleteRows="False" 
+                                      HeadersVisibility="Column" 
+                                      GridLinesVisibility="All" 
+                                      AlternatingRowBackground="#F5F5F5" 
+                                      RowHeight="24">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Produs" Binding="{Binding ProdusComandat.Nume}" Width="*"/>
                                     <DataGridTextColumn Header="Cantitate" Binding="{Binding Cantitate}" Width="80"/>
@@ -457,25 +428,34 @@
                                 </DataGrid.Columns>
                             </DataGrid>
 
-                            <TextBlock x:Name="tbTotalComanda" Text="Total comandă: 0 lei"
-                                       FontWeight="Bold" FontSize="14"
-                                       Margin="0,8,0,0" HorizontalAlignment="Right"/>
+                            <TextBlock x:Name="tbTotalComanda" 
+                                       Text="Total comandă: 0 lei" 
+                                       FontWeight="Bold" 
+                                       FontSize="14" 
+                                       Margin="0,8,0,0" 
+                                       HorizontalAlignment="Right"/>
                         </StackPanel>
                     </GroupBox>
 
-                    <TextBlock x:Name="tbErrProduse" FontSize="11" Foreground="Red"
-                               Margin="0,2,0,8" Visibility="Collapsed"/>
+                    <TextBlock x:Name="tbErrProduse" FontSize="11" Foreground="Red" Margin="0,2,0,8" Visibility="Collapsed"/>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                        <Button x:Name="btnSalveazaComanda" Content="Salvează comanda"
-                                Style="{StaticResource ButonActiune}"
-                                Width="160" Height="32" FontWeight="Bold"
-                                Margin="0,0,10,0" Click="btnSalveazaComanda_Click"/>
-                        <Button x:Name="btnReseteazaComanda" Content="Reset"
-                                Style="{StaticResource ButonSecundar}"
-                                Width="120" Height="32" FontWeight="Bold"
+                        <Button x:Name="btnSalveazaComanda" Content="Salvează comanda" 
+                                Style="{StaticResource ButonActiune}" 
+                                Width="160" 
+                                Height="32" 
+                                FontWeight="Bold" 
+                                Margin="0,0,10,0" 
+                                Click="btnSalveazaComanda_Click"/>
+                        <Button x:Name="btnReseteazaComanda" Content="Reset" 
+                                Style="{StaticResource ButonSecundar}" 
+                                Width="120" 
+                                Height="32" 
+                                FontWeight="Bold" 
                                 Click="btnReseteazaComanda_Click"/>
                     </StackPanel>
+
+                    <TextBlock x:Name="tbMesajAdaugaComanda" FontWeight="Bold" Margin="0,10,0,0"/>
                 </StackPanel>
             </ScrollViewer>
 
@@ -490,19 +470,20 @@
 
                 <TextBlock Grid.Row="0" Text="Listă comenzi" Style="{StaticResource TitluPanel}"/>
 
-                <TextBlock x:Name="lblNrComenzi"
-                    Grid.Row="1"
-                    Text="{Binding ElementName=dgComenzi, Path=Items.Count, StringFormat='Număr comenzi: {0}'}"
-                    FontWeight="Bold"
-                    Foreground="{StaticResource MaroTitlu}"
-                    Margin="0,0,0,8"/>
+                <TextBlock x:Name="lblNrComenzi" Grid.Row="1" 
+                           Text="{Binding ElementName=dgComenzi, Path=Items.Count, StringFormat='Număr comenzi: {0}'}" 
+                           FontWeight="Bold" 
+                           Foreground="{StaticResource MaroTitlu}" 
+                           Margin="0,0,0,8"/>
 
-                <DataGrid Grid.Row="2" x:Name="dgComenzi"
-                    AutoGenerateColumns="False" IsReadOnly="True"
-                    CanUserAddRows="False" CanUserDeleteRows="False"
-                    HeadersVisibility="Column"
-                    SelectionMode="Single"
-                    SelectionChanged="dgComenzi_SelectionChanged_Lista">
+                <DataGrid Grid.Row="2" x:Name="dgComenzi" 
+                          AutoGenerateColumns="False" 
+                          IsReadOnly="True" 
+                          CanUserAddRows="False" 
+                          CanUserDeleteRows="False" 
+                          HeadersVisibility="Column" 
+                          SelectionMode="Single" 
+                          SelectionChanged="dgComenzi_SelectionChanged_Lista">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="40"/>
                         <DataGridTextColumn Header="Nume" Binding="{Binding NumeClient}" Width="110"/>
@@ -516,10 +497,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
 
-                <Border Grid.Row="3"
-                    Background="{StaticResource Auriu}"
-                    Height="2"
-                    Margin="0,15,0,8"/>
+                <Border Grid.Row="3" Background="{StaticResource Auriu}" Height="2" Margin="0,15,0,8"/>
 
                 <Grid Grid.Row="4">
                     <Grid.RowDefinitions>
@@ -528,18 +506,19 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0"
-                        x:Name="tbTitluArticole"
-                        Text="Selectează o comandă pentru a vedea produsele"
-                        FontSize="14"
-                        FontWeight="Bold"
-                        Foreground="{StaticResource MaroTitlu}"
-                        Margin="0,0,0,8"/>
+                    <TextBlock Grid.Row="0" x:Name="tbTitluArticole" 
+                               Text="Selectează o comandă pentru a vedea produsele" 
+                               FontSize="14" 
+                               FontWeight="Bold" 
+                               Foreground="{StaticResource MaroTitlu}" 
+                               Margin="0,0,0,8"/>
 
-                    <DataGrid Grid.Row="1" x:Name="dgArticoleSelectate"
-                        AutoGenerateColumns="False" IsReadOnly="True"
-                        CanUserAddRows="False" CanUserDeleteRows="False"
-                        HeadersVisibility="Column">
+                    <DataGrid Grid.Row="1" x:Name="dgArticoleSelectate" 
+                              AutoGenerateColumns="False" 
+                              IsReadOnly="True" 
+                              CanUserAddRows="False" 
+                              CanUserDeleteRows="False" 
+                              HeadersVisibility="Column">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Produs" Binding="{Binding ProdusComandat.Nume}" Width="*"/>
                             <DataGridTextColumn Header="Cantitate" Binding="{Binding Cantitate}" Width="100"/>
@@ -548,75 +527,105 @@
                         </DataGrid.Columns>
                     </DataGrid>
 
-                    <TextBlock Grid.Row="2"
-                        x:Name="tbTotalArticole"
-                        FontSize="14"
-                        FontWeight="Bold"
-                        Foreground="{StaticResource Auriu}"
-                        HorizontalAlignment="Right"
-                        Margin="0,8,0,0"/>
+                    <TextBlock Grid.Row="2" x:Name="tbTotalArticole" 
+                               FontSize="14" 
+                               FontWeight="Bold" 
+                               Foreground="{StaticResource Auriu}" 
+                               HorizontalAlignment="Right" 
+                               Margin="0,8,0,0"/>
                 </Grid>
             </Grid>
+
             <ScrollViewer x:Name="panelModificaProdus" Visibility="Collapsed" VerticalScrollBarVisibility="Auto">
                 <StackPanel Margin="20">
                     <TextBlock Text="Modifică produs" Style="{StaticResource TitluPanel}"/>
 
                     <Label Content="Selectează produs" FontWeight="Bold" Padding="0" Margin="0,0,0,4"/>
-                    <ComboBox x:Name="cbProduseModificare" Height="28"
-                        DisplayMemberPath="Nume"
-                        VerticalContentAlignment="Center"
-                        SelectionChanged="cbProduseModificare_SelectionChanged"
-                        Margin="0,0,0,15"/>
+                    <ComboBox x:Name="cbProduseModificare" Height="28" 
+                              DisplayMemberPath="Nume" 
+                              VerticalContentAlignment="Center" 
+                              SelectionChanged="cbProduseModificare_SelectionChanged" 
+                              Margin="0,0,0,15"/>
 
-                    <Border x:Name="borderDetaliiProdusModificare"
-                        BorderBrush="LightGray" BorderThickness="1"
-                        Padding="15" Margin="0,0,0,10"
-                        Visibility="Collapsed">
+                    <Border x:Name="borderDetaliiProdusModificare" 
+                            BorderBrush="{StaticResource Auriu}" 
+                            BorderThickness="1" 
+                            Padding="15" 
+                            Margin="0,0,0,10" 
+                            Visibility="Collapsed">
                         <StackPanel>
+                            <Label Content="Nume produs" FontWeight="Bold" Padding="0" Margin="0,0,0,4"/>
+                            <TextBox x:Name="txtNumeModificare" 
+                                     Height="28" 
+                                     Padding="6,0" 
+                                     VerticalContentAlignment="Center" 
+                                     Margin="0,0,0,5" 
+                                     Text="{Binding ProdusInEditare.Nume, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                            <TextBlock FontSize="11" 
+                                       Foreground="Red" 
+                                       Margin="0,2,0,8" 
+                                       Text="{Binding ElementName=txtNumeModificare, Path=(Validation.Errors)/ErrorContent}"/>
+
                             <Label Content="Preț nou (lei)" FontWeight="Bold" Padding="0" Margin="0,0,0,4"/>
-                            <TextBox x:Name="txtPretModificare" Height="28" Padding="6,0"
-                                VerticalContentAlignment="Center" Margin="0,0,0,5"/>
-                            <TextBlock x:Name="tbErrPretModificare" FontSize="11" Foreground="Red"
-                                Margin="0,2,0,8" Visibility="Collapsed"/>
+                            <TextBox x:Name="txtPretModificare" 
+                                     Height="28" 
+                                     Padding="6,0" 
+                                     VerticalContentAlignment="Center"
+                                     Margin="0,0,0,5" 
+                                     Text="{Binding ProdusInEditare.PretUnitar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                            <TextBlock FontSize="11" 
+                                       Foreground="Red" 
+                                       Margin="0,2,0,8" 
+                                       Text="{Binding ElementName=txtPretModificare, Path=(Validation.Errors)/ErrorContent}"/>
 
                             <Label Content="Detalii" FontWeight="Bold" Padding="0" Margin="0,4,0,4"/>
-                            <TextBox x:Name="txtDetaliiModificare" Height="28" Padding="6,0"
-                                VerticalContentAlignment="Center" Margin="0,0,0,10"/>
+                            <TextBox x:Name="txtDetaliiModificare" 
+                                     Height="28" 
+                                     Padding="6,0" 
+                                     VerticalContentAlignment="Center" 
+                                     Margin="0,0,0,5" 
+                                     Text="{Binding ProdusInEditare.Detalii, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                            <TextBlock FontSize="11" 
+                                       Foreground="Red" 
+                                       Margin="0,2,0,10" 
+                                       Text="{Binding ElementName=txtDetaliiModificare, Path=(Validation.Errors)/ErrorContent}"/>
 
                             <Label Content="Caracteristici (selecție multiplă - Ctrl+Click)" FontWeight="Bold" Padding="0" Margin="0,4,0,4"/>
                             <ListBox x:Name="lbCaracteristiciModificare" Height="100" SelectionMode="Multiple" FontSize="13" Margin="0,0,0,10"/>
 
-                            <TextBlock x:Name="tbInfoDateProdus" FontStyle="Italic" Foreground="Gray"
-                                Margin="0,10,0,15" FontSize="12"/>
+                            <TextBlock x:Name="tbInfoDateProdus" FontStyle="Italic" Foreground="Gray" Margin="0,10,0,15" FontSize="12"/>
 
-                            <Button x:Name="btnActualizeazaProdus" Content="Actualizează produs"
-                                Style="{StaticResource ButonActiune}"
-                                Width="200" Height="32" FontWeight="Bold"
-                                HorizontalAlignment="Left"
-                                Click="btnActualizeazaProdus_Click"/>
+                            <Button x:Name="btnActualizeazaProdus" Content="Actualizează produs" 
+                                    Style="{StaticResource ButonActiune}" 
+                                    Width="200" Height="32" 
+                                    HorizontalAlignment="Left" 
+                                    IsEnabled="{Binding ProdusInEditare.EsteValid}" 
+                                    Click="btnActualizeazaProdus_Click"/>
 
-                            <TextBlock x:Name="tbMesajActualizareProdus" FontWeight="Bold"
-                           Foreground="Green" Margin="0,10,0,0"/>
+                            <TextBlock x:Name="tbMesajActualizareProdus" FontWeight="Bold" Foreground="Green" Margin="0,10,0,0"/>
                         </StackPanel>
                     </Border>
                 </StackPanel>
             </ScrollViewer>
+
             <ScrollViewer x:Name="panelModificaComanda" Visibility="Collapsed" VerticalScrollBarVisibility="Auto">
                 <StackPanel Margin="20">
                     <TextBlock Text="Modifică comandă" Style="{StaticResource TitluPanel}"/>
 
                     <Label Content="Selectează comandă" FontWeight="Bold" Padding="0" Margin="0,0,0,4"/>
-                    <ComboBox x:Name="cbComenziModificare" Height="28"
-                        VerticalContentAlignment="Center"
-                        SelectionChanged="cbComenziModificare_SelectionChanged"
-                        Margin="0,0,0,15"/>
+                    <ComboBox x:Name="cbComenziModificare" 
+                              Height="28" 
+                              VerticalContentAlignment="Center" 
+                              SelectionChanged="cbComenziModificare_SelectionChanged" 
+                              Margin="0,0,0,15"/>
 
-                    <Border x:Name="borderDetaliiComandaModificare"
-                        BorderBrush="LightGray" BorderThickness="1"
-                        Padding="15" Margin="0,0,0,10"
-                        Visibility="Collapsed">
+                    <Border x:Name="borderDetaliiComandaModificare" 
+                            BorderBrush="LightGray" 
+                            BorderThickness="1" 
+                            Padding="15" 
+                            Margin="0,0,0,10" 
+                            Visibility="Collapsed">
                         <StackPanel>
-
                             <Grid Margin="0,0,0,8">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -626,18 +635,14 @@
 
                                 <StackPanel Grid.Column="0">
                                     <Label Content="Nume client" FontWeight="Bold" Padding="0" Margin="0,0,0,4"/>
-                                    <TextBox x:Name="txtNumeClientModificare" Height="28" Padding="6,0"
-                                        VerticalContentAlignment="Center"/>
-                                    <TextBlock x:Name="tbErrNumeClientModificare" FontSize="11" Foreground="Red"
-                                        Margin="0,2,0,0" Visibility="Collapsed"/>
+                                    <TextBox x:Name="txtNumeClientModificare" Height="28" Padding="6,0" VerticalContentAlignment="Center"/>
+                                    <TextBlock x:Name="tbErrNumeClientModificare" FontSize="11" Foreground="Red" Margin="0,2,0,0" Visibility="Collapsed"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="2">
                                     <Label Content="Prenume client" FontWeight="Bold" Padding="0" Margin="0,0,0,4"/>
-                                    <TextBox x:Name="txtPrenumeClientModificare" Height="28" Padding="6,0"
-                                        VerticalContentAlignment="Center"/>
-                                    <TextBlock x:Name="tbErrPrenumeClientModificare" FontSize="11" Foreground="Red"
-                                        Margin="0,2,0,0" Visibility="Collapsed"/>
+                                    <TextBox x:Name="txtPrenumeClientModificare" Height="28" Padding="6,0" VerticalContentAlignment="Center"/>
+                                    <TextBlock x:Name="tbErrPrenumeClientModificare" FontSize="11" Foreground="Red" Margin="0,2,0,0" Visibility="Collapsed"/>
                                 </StackPanel>
                             </Grid>
 
@@ -650,10 +655,8 @@
 
                                 <StackPanel Grid.Column="0">
                                     <Label Content="Telefon" FontWeight="Bold" Padding="0" Margin="0,0,0,4"/>
-                                    <TextBox x:Name="txtTelefonModificare" Height="28" Padding="6,0"
-                                        VerticalContentAlignment="Center"/>
-                                    <TextBlock x:Name="tbErrTelefonModificare" FontSize="11" Foreground="Red"
-                                        Margin="0,2,0,0" Visibility="Collapsed"/>
+                                    <TextBox x:Name="txtTelefonModificare" Height="28" Padding="6,0" VerticalContentAlignment="Center"/>
+                                    <TextBlock x:Name="tbErrTelefonModificare" FontSize="11" Foreground="Red" Margin="0,2,0,0" Visibility="Collapsed"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="2">
@@ -661,7 +664,7 @@
                                     <DatePicker x:Name="dpDataLivrareModificare" Height="28"/>
                                 </StackPanel>
                             </Grid>
-                            
+
                             <Label Content="Mod plată" FontWeight="Bold" Padding="0" Margin="0,8,0,4"/>
                             <ListBox x:Name="lbModPlataModificare" Height="65" SelectionMode="Single" FontSize="13" Margin="0,0,0,10"/>
 
@@ -674,22 +677,17 @@
                                 <StackPanel Grid.Column="0">
                                     <Label Content="Status comandă" FontWeight="Bold" Padding="0" Margin="0,0,0,4"/>
                                     <StackPanel Orientation="Horizontal">
-                                        <RadioButton x:Name="rbInAsteptareMod" Content="În așteptare"
-                                         GroupName="StatusComandaMod" Margin="0,0,15,0"/>
-                                        <RadioButton x:Name="rbInProcesareMod" Content="În procesare"
-                                         GroupName="StatusComandaMod" Margin="0,0,15,0"/>
-                                        <RadioButton x:Name="rbFinalizataMod" Content="Finalizată"
-                                         GroupName="StatusComandaMod"/>
+                                        <RadioButton x:Name="rbInAsteptareMod" Content="În așteptare" GroupName="StatusComandaMod" Margin="0,0,15,0"/>
+                                        <RadioButton x:Name="rbInProcesareMod" Content="În procesare" GroupName="StatusComandaMod" Margin="0,0,15,0"/>
+                                        <RadioButton x:Name="rbFinalizataMod" Content="Finalizată" GroupName="StatusComandaMod"/>
                                     </StackPanel>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1">
                                     <Label Content="Status plată" FontWeight="Bold" Padding="0" Margin="0,0,0,4"/>
                                     <StackPanel Orientation="Horizontal">
-                                        <RadioButton x:Name="rbNeplatitaMod" Content="Neplătită"
-                                         GroupName="StatusPlataMod" Margin="0,0,15,0"/>
-                                        <RadioButton x:Name="rbPlatitaMod" Content="Plătită"
-                                         GroupName="StatusPlataMod"/>
+                                        <RadioButton x:Name="rbNeplatitaMod" Content="Neplătită" GroupName="StatusPlataMod" Margin="0,0,15,0"/>
+                                        <RadioButton x:Name="rbPlatitaMod" Content="Plătită" GroupName="StatusPlataMod"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>
@@ -702,23 +700,34 @@
                                             <ColumnDefinition Width="100"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <ComboBox Grid.Column="0" x:Name="cbProduseAdaugareInComanda"
-                                            Height="28" DisplayMemberPath="Nume"
-                                            VerticalContentAlignment="Center"/>
-                                        <TextBox Grid.Column="1" x:Name="txtCantitateAdaugareInComanda"
-                                            Height="28" Padding="6,0" Margin="5,0"
-                                            VerticalContentAlignment="Center" Text="1"/>
-                                        <Button Grid.Column="2" x:Name="btnAdaugaProdusInComandaMod"
-                                            Style="{StaticResource ButonActiune}"
-                                            Content="Adaugă" Width="100" Height="28"
-                                            Click="btnAdaugaProdusInComandaMod_Click"/>
+                                        <ComboBox Grid.Column="0" x:Name="cbProduseAdaugareInComanda" 
+                                                  Height="28" 
+                                                  DisplayMemberPath="Nume" 
+                                                  VerticalContentAlignment="Center"/>
+                                        <TextBox Grid.Column="1" x:Name="txtCantitateAdaugareInComanda" 
+                                                 Height="28" 
+                                                 Padding="6,0" 
+                                                 Margin="5,0" 
+                                                 VerticalContentAlignment="Center" 
+                                                 Text="1"/>
+                                        <Button Grid.Column="2" x:Name="btnAdaugaProdusInComandaMod" 
+                                                Style="{StaticResource ButonActiune}" 
+                                                Content="Adaugă" 
+                                                Width="100" 
+                                                Height="28" 
+                                                Click="btnAdaugaProdusInComandaMod_Click"/>
                                     </Grid>
 
-                                    <DataGrid x:Name="dgArticoleComandaModificare" Height="150"
-                                        AutoGenerateColumns="False" IsReadOnly="True"
-                                        CanUserAddRows="False" CanUserDeleteRows="False"
-                                        HeadersVisibility="Column" GridLinesVisibility="All"
-                                        AlternatingRowBackground="#F5F5F5" RowHeight="26">
+                                    <DataGrid x:Name="dgArticoleComandaModificare" 
+                                              Height="150" 
+                                              AutoGenerateColumns="False" 
+                                              IsReadOnly="True" 
+                                              CanUserAddRows="False" 
+                                              CanUserDeleteRows="False" 
+                                              HeadersVisibility="Column" 
+                                              GridLinesVisibility="All" 
+                                              AlternatingRowBackground="#F5F5F5" 
+                                              RowHeight="26">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Header="Produs" Binding="{Binding ProdusComandat.Nume}" Width="*"/>
                                             <DataGridTextColumn Header="Cantitate" Binding="{Binding Cantitate}" Width="80"/>
@@ -727,30 +736,35 @@
                                         </DataGrid.Columns>
                                     </DataGrid>
 
-                                    <Button x:Name="btnStergeArticolModificare"
-                                        Style="{StaticResource ButonSecundar}"
-                                        Content="Șterge produsul selectat"
-                                        Width="200" Height="28"
-                                        HorizontalAlignment="Left"
-                                        Margin="0,8,0,0"
-                                        Click="btnStergeArticolModificare_Click"/>
+                                    <Button x:Name="btnStergeArticolModificare" 
+                                            Style="{StaticResource ButonSecundar}" 
+                                            Content="Șterge produsul selectat" 
+                                            Width="200" 
+                                            Height="28" 
+                                            HorizontalAlignment="Left" 
+                                            Margin="0,8,0,0" 
+                                            Click="btnStergeArticolModificare_Click"/>
 
-                                    <TextBlock x:Name="tbTotalComandaMod" Text="Total comandă: 0 lei"
-                                        FontWeight="Bold" FontSize="14"
-                                        Margin="0,10,0,0" HorizontalAlignment="Right"/>
+                                    <TextBlock x:Name="tbTotalComandaMod" 
+                                               Text="Total comandă: 0 lei" 
+                                               FontWeight="Bold" 
+                                               FontSize="14" 
+                                               Margin="0,10,0,0" 
+                                               HorizontalAlignment="Right"/>
                                 </StackPanel>
                             </GroupBox>
 
-                            <Button x:Name="btnSalveazaModificariComanda"
-                                Style="{StaticResource ButonActiune}"
-                                Content="Salvează modificările"
-                                Width="200" Height="32" FontWeight="Bold"
-                                HorizontalAlignment="Left"
-                                Margin="0,10,0,0"
-                                Click="btnSalveazaModificariComanda_Click"/>
+                            <Button x:Name="btnSalveazaModificariComanda" 
+                                    Style="{StaticResource ButonActiune}" 
+                                    Content="Salvează modificările" 
+                                    Width="200" 
+                                    Height="32" 
+                                    FontWeight="Bold" 
+                                    HorizontalAlignment="Left" 
+                                    Margin="0,10,0,0" 
+                                    Click="btnSalveazaModificariComanda_Click"/>
 
-                            <TextBlock x:Name="tbMesajActualizareComanda" FontWeight="Bold"
-                           Foreground="Green" Margin="0,10,0,0"/>
+                            <TextBlock x:Name="tbMesajActualizareComanda" FontWeight="Bold" Foreground="Green" Margin="0,10,0,0"/>
                         </StackPanel>
                     </Border>
                 </StackPanel>

@@ -1,6 +1,6 @@
 1;Ecler;7;Umplutura cu aroma de vanilie si glazura de ciocolata;0;2026-05-17;2026-05-17
 2;Macaron;3;Diverse sortimente;8;2026-05-16;2026-05-17
-3;Gogoasa cu Zmeura;5;Umplutura din dulceata de zmeura;4;2026-05-17;2026-05-17
+3;Gogoasa cu Zmeura;5;Umplutura din dulceata de zmeura;4;2026-05-17;2026-05-24
 4;Prajitura Diplomat;8.5;Pret/buc;0;2026-05-17;2026-05-17
 5;Medovik;12;Pret/Buc;0;2026-05-12;2026-05-17
 6;Prajitura Oreo;11;Pret/Buc;0;2026-05-17;2026-05-17
@@ -10,7 +10,10 @@
 10;Croissant cu Ciocolata;3;Umplutura de ciocolata cu lapte;0;2026-05-17;2026-05-17
 11;Cupcake cu Ciocolata;4;Blat cu cacao si crema de ciocolata;0;2026-05-17;2026-05-17
 12;Prajitura Albinuta;11;Crema bavareza cu miere si lamaie;4;2026-05-17;2026-05-17
-13;Cafea Scurta;4;70ml;0;2026-05-17;2026-05-17
-14;Cafea Lunga;6;150ml;0;2026-05-17;2026-05-17
-15;Latte Machiatto;8;200ml;0;2026-05-17;2026-05-17
-16;Espresso;5;30ml;0;2026-05-17;2026-05-17
+13;Cafea Scurta;4;70ml;13;2026-05-17;2026-05-18
+14;Cafea Lunga;6;150ml;13;2026-05-17;2026-05-18
+15;Latte Machiatto;8;200ml;5;2026-05-17;2026-05-18
+16;Espresso;5;30ml;13;2026-05-17;2026-05-18
+17;Prajitura Fanta;11.5;Suc de portocale natural;0;2026-05-18;2026-05-18
+18;Branzoaica;2;Traditionala;3;2026-05-18;2026-05-18
+19;Raffaelo;1.5;Umplutura cu ciocolata alba si migdale;0;2026-05-24;2026-05-24

@@ -6,4 +6,32 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Include="obj\Debug\net10.0\.NETCoreApp,Version=v10.0.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\net10.0\LibrarieModele.AssemblyInfo.cs" />
+    <Compile Include="obj\Debug\net10.0\LibrarieModele.GlobalUsings.g.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="obj\Debug\net10.0\LibrarieModele.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\net10.0\LibrarieModele.sourcelink.json" />
+    <Content Include="obj\LibrarieModele.csproj.nuget.dgspec.json" />
+    <Content Include="obj\project.assets.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="obj\Debug\net10.0\LibrarieModele.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\net10.0\LibrarieModele.assets.cache" />
+    <None Include="obj\Debug\net10.0\LibrarieModele.csproj.BuildWithSkipAnalyzers" />
+    <None Include="obj\Debug\net10.0\LibrarieModele.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\net10.0\LibrarieModele.dll" />
+    <None Include="obj\Debug\net10.0\LibrarieModele.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="obj\Debug\net10.0\LibrarieModele.pdb" />
+    <None Include="obj\Debug\net10.0\refint\LibrarieModele.dll" />
+    <None Include="obj\Debug\net10.0\ref\LibrarieModele.dll" />
+    <None Include="obj\LibrarieModele.csproj.nuget.g.props" />
+    <None Include="obj\LibrarieModele.csproj.nuget.g.targets" />
+    <None Include="obj\project.nuget.cache" />
+  </ItemGroup>
+
 </Project>
