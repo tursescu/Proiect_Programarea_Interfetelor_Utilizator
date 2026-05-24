@@ -3,7 +3,9 @@
 3;Dohotar;Ionut;0754726336;2026-05-19;0;0;Numerar
 4;Stratan;Maria;0743612339;2026-05-19;0;0;Card
 5;Chifan;Emilia;0733612998;2026-05-19;0;0;Card
-6;Slavici;Ioan;0753662154;2026-05-19;0;0;Numerar
+6;Slavici;Ioan;0753662154;2026-05-19;2;1;Numerar
 7;Pasciuc;Cleo;0744153243;2026-05-21;0;0;Numerar
 8;Franiuc;Manuel;0724423313;2026-05-21;2;1;Card
 9;Bucsa;Mathias;0787777777;2026-05-20;0;0;Card
+10;Pontiuc;Viorica;0772365542;2026-05-26;0;0;Card
+11;Stoican;Emanuel;0745224119;2026-05-25;0;0;Card

@@ -453,7 +453,7 @@ namespace InterfataGraficaWPF
             }
 
             tbMesajAdaugaComanda.Foreground = Brushes.Green;
-            tbMesajAdaugaComanda.Text = $"Comanda #{idNou} a fost salvată cu succes! Total: {comandaNoua.PretTotal} lei";
+            tbMesajAdaugaComanda.Text = $"Comanda #{idNou} a fost salvată cu succes!";
 
             ResetFormularComanda();
         }
